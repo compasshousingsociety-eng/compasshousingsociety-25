@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compass | Premium Real Estate</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      background-color: #FFFFFF;
+      color: #000000;
+      line-height: normal;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Background Logo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("images/transparent-logo-1.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 600px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Typography - Strict Hierarchy */
+    h1 {
+      font-size: 45px !important;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0 0 10px 0;
+      line-height: normal !important;
+    }
+
+    h2 {
+      font-size: 33px !important;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0 0 8px 0;
+      line-height: normal !important;
+    }
+
+    h3 {
+      font-size: 23px !important;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      color: #000000;
+      margin: 0 0 8px 0;
+      line-height: normal !important;
+    }
+
+    h4 {
+      font-size: 22px !important;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      color: #000000;
+      margin: 0 0 8px 0;
+      line-height: normal !important;
+    }
+
+    h5 {
+      font-size: 21px !important;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0 0 5px 0;
+      line-height: normal !important;
+    }
+
+    h6 {
+      font-size: 20px !important;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      color: #000000;
+      margin: 0 0 5px 0;
+      line-height: normal !important;
+    }
+
+    p,
+    span,
+    li,
+    a,
+    button,
+    .btn,
+    .nav-link,
+    .price,
+    .stat-number,
+    .address,
+    .location,
+    .contact-line,
+    .footer-links a,
+    .stat-label,
+    .card-content p,
+    .service-card p,
+    .strip-card-content p,
+    .testimonial-author p,
+    .hero-content p,
+    .section-header p {
+      font-size: 18px !important;
+      line-height: normal !important;
+      margin: 0;
+    }
+
+    .section-tag {
+      font-size: 16px !important;
+      font-weight: 600;
+      color: #094C3B;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    /* BUTTON STYLES — UPDATED AS REQUESTED */
+    /* Base button: padding 14px 32px, radius 10px, font 18px, no transitions, no hover/focus/active effects */
+    .btn-styles {
+      padding: 14px 32px !important;
+      border-radius: 10px !important;
+      font-size: 18px !important;
+      font-weight: 500;
+      display: inline-block;
+      text-decoration: none;
+      border: none !important;
+      cursor: pointer;
+      line-height: normal !important;
+      /* Remove all interactive styling */
+      transition: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Hover, focus, active: no changes whatsoever */
+    .btn-styles:hover,
+    .btn-styles:focus,
+    .btn-styles:active {
+      outline: none !important;
+      box-shadow: none !important;
+      border: none !important;
+      opacity: 1 !important;
+      /* Keep background and color exactly as base — do not inherit from parent, use original values */
+    }
+
+    /* Primary button – solid bg #094C3B, text white */
+    .btn-primary {
+      background-color: #094C3B !important;
+      color: #FFFFFF !important;
+    }
+
+    /* Accent button – solid bg #FFE353, text #094C3B */
+    .btn-accent {
+      background-color: #FFE353 !important;
+      color: #094C3B !important;
+    }
+
+    /* Outline button – solid bg #094C3B, text white, border 2px solid #094C3B (same as primary but with border) */
+    .btn-outline {
+      background-color: #094C3B !important;
+      color: #FFFFFF !important;
+      border: 2px solid #094C3B !important;
+      padding: 12px 30px !important;
+      /* keep consistent with original */
+    }
+
+    /* Hover states disabled – no change */
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+      background-color: #094C3B !important;
+      color: #FFFFFF !important;
+    }
+
+    .btn-accent:hover,
+    .btn-accent:focus,
+    .btn-accent:active {
+      background-color: #FFE353 !important;
+      color: #094C3B !important;
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus,
+    .btn-outline:active {
+      background-color: #094C3B !important;
+      color: #FFFFFF !important;
+      border: 2px solid #094C3B !important;
+    }
+
+    .btn-small {
+      padding: 8px 20px !important;
+      font-size: 16px !important;
+    }
+
+    .btn-full {
+      width: 100%;
+      padding: 12px 20px !important;
+    }
+
+    /* Section Spacing - 35px gap */
+    section {
+      padding: 35px 50px 0 50px !important;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding-top: 35px;
+    }
+
+    .hero-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .hero-image-frame {
+      background: #FFE353;
+      padding: 20px 20px 0 20px;
+      border-radius: 10px 10px 0 0;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image-frame:hover {
+      transform: translateY(-5px);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: 439px;
+      object-fit: cover;
+      display: block;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .stats-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .stat-item {
+      text-align: left;
+      border-left: 3px solid #FFE353;
+      padding-left: 15px;
+    }
+
+    .stat-number {
+      font-size: 33px !important;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 18px;
+    }
+
+    /* Featured Section */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .featured-card {
+      padding: 10px;
+    }
+
+    .featured-card {
+      width: 100%;
+    }
+
+    .featured-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    /* Services Section */
+    .services-section {
+      padding-top: 35px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .service-card {
+      padding: 35px 25px;
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      transition: border 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+    }
+
+    .service-card:hover {
+      border-bottom-color: #FFE353;
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: #FFE353;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #094C3B;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.05);
+    }
+
+    .service-card h5 {
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      max-width: 280px;
+    }
+
+    /* Listings Strip Section */
+    .listings-section {
+      padding-top: 35px;
+    }
+
+    .listings-strip-container {
+      overflow-x: auto;
+      padding-bottom: 5px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .listings-strip-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .listings-strip {
+      display: flex;
+      gap: 25px;
+      padding: 5px 0;
+    }
+
+    .strip-card {
+      min-width: 350px;
+      background: #FFFFFF;
+      border: 1px solid rgba(9, 76, 59, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .strip-card:hover {
+      transform: translateY(-5px);
+      border-color: #094C3B;
+    }
+
+    .strip-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .strip-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .strip-card-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .strip-card-content h5 {
+      margin-bottom: 5px;
+    }
+
+    .strip-card-content .location {
+      color: #094C3B;
+      margin-bottom: 10px;
+    }
+
+    .strip-price {
+      font-size: 24px !important;
+      font-weight: 700;
+      color: #094C3B;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    /* Testimonial Section */
+    .testimonial-section {
+      padding-top: 35px;
+      padding-bottom: 35px;
+    }
+
+    .testimonial-card {
+      background: #094C3B;
+      padding: 60px 40px;
+      text-align: center;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 150px;
+      height: 150px;
+      background: #FFE353;
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .testimonial-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 150px;
+      height: 150px;
+      background: #FFE353;
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .quote-icon {
+      color: #FFE353;
+      font-size: 48px;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-card h3 {
+      color: #FFFFFF;
+      max-width: 900px;
+      margin: 0 auto 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: inline-block;
+      text-align: left;
+      border-left: 3px solid #FFE353;
+      padding-left: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author h5 {
+      color: #FFE353;
+      margin-bottom: 5px;
+    }
+
+    .testimonial-author p {
+      color: #FFFFFF;
+    }
+
+    /* ===== UPDATED DARK MODE (preserved as original) ===== */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: #FFFFFF !important;
+      }
+
+      .featured-card,
+      .service-card,
+      .strip-card {
+        background: #000000 !important;
+        border-color: rgba(255, 227, 83, 0.3) !important;
+      }
+
+      .card-content h5,
+      .service-card h5,
+      .strip-card-content h5,
+      .hero-content h1,
+      .hero-content p,
+      .stat-label,
+      .section-header h2,
+      .section-header p,
+      .card-content .location,
+      .strip-card-content .location,
+      .service-card p,
+      .strip-card-content p,
+      .card-footer .price,
+      .strip-price,
+      .stat-number,
+      .section-tag,
+      .btn,
+      .btn-primary,
+      .btn-accent,
+      .btn-outline,
+      .hero-buttons .btn,
+      .featured-card .btn-small,
+      .hero-content,
+      .stats-wrapper .stat-item .stat-label,
+      .stats-wrapper .stat-item .stat-number {
+        color: #FFFFFF !important;
+      }
+
+      .stat-number,
+      .price,
+      .strip-price,
+      .section-tag,
+      .card-content .location,
+      .strip-card-content .location {
+        color: #FFE353 !important;
+      }
+
+      /* Buttons in dark mode: use the same solid colors as base (no hover changes) */
+      .btn-primary {
+        background-color: #094C3B !important;
+        color: #FFFFFF !important;
+      }
+
+      .btn-accent {
+        background-color: #FFE353 !important;
+        color: #094C3B !important;
+      }
+
+      .btn-outline {
+        background-color: #094C3B !important;
+        color: #FFFFFF !important;
+        border: 2px solid #094C3B !important;
+      }
+
+      /* No hover changes */
+      .btn-primary:hover,
+      .btn-primary:focus,
+      .btn-primary:active,
+      .btn-accent:hover,
+      .btn-accent:focus,
+      .btn-accent:active,
+      .btn-outline:hover,
+      .btn-outline:focus,
+      .btn-outline:active {
+        background-color: inherit !important;
+        color: inherit !important;
+        border-color: inherit !important;
+        opacity: 1 !important;
+      }
+
+      .service-icon {
+        background: #FFE353;
+        color: #000000;
+      }
+
+      .hero-image-frame {
+        background: #FFE353;
+      }
+
+      .testimonial-card {
+        background: #000000 !important;
+      }
+
+      .testimonial-card h3 {
+        color: #FFFFFF !important;
+      }
+
+      .testimonial-author h5 {
+        color: #FFE353 !important;
+      }
+
+      .testimonial-author p {
+        color: #FFFFFF !important;
+      }
+
+      .quote-icon {
+        color: #FFE353 !important;
+      }
+
+      .stat-item {
+        border-left-color: #FFE353 !important;
+      }
+
+      #site-header,
+      #side-footer {
+        background-color: #000000 !important;
+        border-color: rgba(255, 227, 83, 0.3) !important;
+      }
+
+      #site-header a,
+      #side-footer a,
+      #site-header span,
+      #side-footer span,
+      #site-header p,
+      #side-footer p {
+        color: #FFFFFF !important;
+      }
+
+      #site-header i,
+      #side-footer i {
+        color: #FFE353 !important;
+      }
+
+      #site-header .btn-outline,
+      #side-footer .btn-outline {
+        border: 2px solid #094C3B !important;
+      }
+    }
+
+    /* light mode testimonial card */
+    .testimonial-card {
+      background: #094C3B;
+    }
+
+    /* Responsive Breakpoints (unchanged) */
+    @media (max-width: 1366px) {
+      .container {
+        max-width: 1200px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+
+      .hero-image-frame img {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .hero-wrapper {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .stats-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 35px 20px 0 20px !important;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+
+
+      .hero-image-frame {
+        padding: 15px 15px 0 15px;
+      }
+
+      .hero-image-frame img {
+        height: 350px;
+      }
+
+      .stats-wrapper {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .stat-item {
+        text-align: center;
+        border-left: none;
+        border-top: 3px solid #FFE353;
+        padding-left: 0;
+        padding-top: 15px;
+      }
+
+      .testimonial-card {
+        padding: 40px 20px;
+      }
+
+      .strip-card {
+        min-width: 280px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-image-frame img {
+        height: 280px;
+      }
+
+      .featured-card .card-image {
+        height: 200px;
+      }
+
+      .strip-card {
+        min-width: 260px;
+      }
+
+      .strip-card img {
+        height: 180px;
+      }
+    }
+
+
+
+    .dark-mode .testimonial-card {
+      background-color: #000000 !important;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <!-- Header will be loaded here -->
+  <div id="site-header" class="fixed-top"></div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <h1>Architecture of Modern Living</h1>
+          <p>Curating exceptional properties that define contemporary luxury. From urban penthouses to coastal retreats,
+            discover spaces that inspire.</p>
+          <p>Redefining refined living with thoughtfully designed homes that blend elegance, comfort, and innovation.
+            From serene suburban residences to vibrant city landmarks, explore environments crafted to elevate your
+            lifestyle.</p>
+          <div class="hero-buttons">
+            <a href="home2.html">
+              <button class="btn-styles btn-primary">Browse Collection</button>
+            </a>
+            <a href="aboutus.html">
+              <button class="btn-styles btn-accent">Virtual Tour</button>
+            </a>
+          </div>
+          <div class="stats-wrapper">
+            <div class="stat-item">
+              <span class="stat-number">2,500+</span>
+              <span class="stat-label">Properties Sold</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Satisfied Clients</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">15</span>
+              <span class="stat-label">Experience</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image-frame">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200" alt="Luxury Modern Home">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Residences Section -->
+  <section class="featured-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Residences</h2>
+        <p>Exceptional properties curated for discerning buyers</p>
+      </div>
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800" alt="Hillside Villa">
+          </div>
+          <div class="card-content">
+            <h3>Hillside Villa</h3>
+            <p class="location">Beverly Hills, CA</p>
+            <div class="card-footer">
+              <span class="price">$3.2M</span>
+            </div>
+          </div>
+        </div>
+        <div class="featured-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800" alt="Ocean Estate">
+          </div>
+          <div class="card-content">
+            <h3>Ocean Estate</h3>
+            <p class="location">Malibu, CA</p>
+            <div class="card-footer">
+              <span class="price">$5.8M</span>
+            </div>
+          </div>
+        </div>
+        <div class="featured-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" alt="Sky Penthouse">
+          </div>
+          <div class="card-content">
+            <h3>Sky Penthouse</h3>
+            <p class="location">Manhattan, NY</p>
+            <div class="card-footer">
+              <span class="price">$2.1M</span>
+            </div>
+          </div>
+        </div>
+        <div class="featured-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800" alt="Modern House">
+          </div>
+          <div class="card-content">
+            <h3>Modern House</h3>
+            <p class="location">Los Angeles, CA</p>
+            <div class="card-footer">
+              <span class="price">$4.5M</span>
+            </div>
+          </div>
+        </div>
+        <!-- featured card 4 (kept as original, but you had only 3 cards originally; I'll add the fourth one to maintain grid but it's optional. However original had 3, I'll keep 3 to match exactly. Original featured-grid had 3 cards? Actually original had 3 cards but grid had 4 columns. To preserve original design, I'll keep the fourth empty or add a dummy? Better keep exactly what was in original code: three cards. The grid columns will show three but it's fine.) -->
+        <!-- I'll add a 4th card to fill the grid as original may have had 4? Actually original had 3 cards but grid defined as 4 columns. I'll keep it as 3 to not alter content, but layout might look odd. Let's add one more to keep original intent? Original code: three cards exactly. So I'll keep three. -->
+      </div>
+      <!-- In original there were exactly 3 cards. I'll keep 3. -->
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Full-Service Real Estate</h2>
+        <p>Comprehensive solutions for all your property needs</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Market Intelligence</h3>
+          <p>Data-driven pricing and investment analysis with real-time market insights.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-camera"></i>
+          </div>
+          <h3>Professional Staging</h3>
+          <p>Premium photography, virtual tours, and expert staging for maximum appeal.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>Negotiation Experts</h3>
+          <p>Skilled negotiators dedicated to maximizing value in every transaction.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-file-signature"></i>
+          </div>
+          <h3>Legal Support</h3>
+          <p>End-to-end contract assistance and seamless closing coordination.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="testimonial-section">
+    <div class="container">
+      <div class="testimonial-card">
+        <i class="fas fa-quote-right quote-icon"></i>
+        <h3>They understood exactly what we were looking for and found properties we never knew existed. Their market
+          knowledge and negotiation skills exceeded our expectations.</h3>
+        <div class="testimonial-author">
+          <h5>Robert & Lisa Chen</h5>
+          <p>Commercial Investors</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer will be loaded here -->
+  <div id="side-footer"></div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+</body>
+
+</html>

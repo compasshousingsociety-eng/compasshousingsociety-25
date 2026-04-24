@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Compass Housing | Our Real Estate Services</title>
+  <!-- Existing Stylesheets -->
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ----- GLOBAL RESET & 3-COLOR SYSTEM ONLY (#094C3B, #FFE353, WHITE, BLACK) ----- */
+    :root {
+      --primary-green: #094C3B;
+      --accent-yellow: #FFE353;
+      --pure-white: #FFFFFF;
+      --pure-black: #000000;
+      --bg-dark: #121212;
+      --text-dark: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      background-color: var(--pure-white);
+      
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background transparent Compass Housing Society logo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('images/transparent-logo-1.png');   background-repeat: no-repeat;
+      background-position: center;
+      background-size: 500px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body[data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body[data-theme="dark"]::before {
+      opacity: 0.15;
+    }
+
+    /* ===== TYPOGRAPHY - STRICT HIERARCHY ===== */
+    h1 {
+      font-size: 45px;
+      font-weight: 700;
+      
+      margin-bottom: 1rem;
+    }
+
+    body[data-theme="dark"] h1 {
+      color: var(--text-dark);
+    }
+
+    h2 {
+      font-size: 33px;
+      font-weight: 600;
+      
+      margin-bottom: 1rem;
+    }
+
+    body[data-theme="dark"] h2 {
+      color: var(--text-dark);
+    }
+
+    h3 {
+      font-size: 23px;
+      font-weight: 600;
+      
+    }
+
+    body[data-theme="dark"] h3 {
+      color: var(--text-dark);
+    }
+
+    h4 {
+      font-size: 22px;
+      font-weight: 600;
+      
+    }
+
+    h5 {
+      font-size: 21px;
+      font-weight: 600;
+      
+    }
+
+    h6 {
+      font-size: 20px;
+      font-weight: 600;
+      
+    }
+
+    p, span, li, .card-text, .btn, .hero-sub, .feature-text, .badge-text, .footer-text, .testimonial-text {
+      font-size: 18px;
+      
+    }
+
+    body[data-theme="dark"] p,
+    body[data-theme="dark"] span,
+    body[data-theme="dark"] li,
+    body[data-theme="dark"] .card-text,
+    body[data-theme="dark"] .hero-sub {
+      color: var(--text-dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary-green {
+      background-color: var(--primary-green);
+      color: var(--pure-white);
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: auto;
+    }
+
+    .card-btn-green {
+      background-color: var(--primary-green);
+      color: var(--pure-white);
+      font-weight: 500;
+      font-size: 18px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: auto;
+      border: none;
+      cursor: pointer;
+      width:70%;
+    }
+
+    .btn-yellow-accent {
+      background-color: var(--accent-yellow);
+      
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: auto;
+    }
+
+    .btn-outline-green {
+      background-color: transparent;
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+      padding: 10px 26px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      width: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+  
+
+    /* ===== CARDS - Equal height ===== */
+    .service-card {
+      /* background: var(--pure-white); */
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    body[data-theme="dark"] .service-card {
+      background: #1e1e1e;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .card-img-top {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 23px;
+      font-weight: 700;
+      
+      margin-bottom: 0.75rem;
+    }
+
+    body[data-theme="dark"] .card-title {
+      color: var(--text-dark);
+    }
+
+    .card-text {
+      font-size: 18px;
+      
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+
+    body[data-theme="dark"] .card-text {
+      color: #e0e0e0;
+    }
+
+    .service-badge {
+      background-color: var(--accent-yellow);
+      
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      
+    }
+
+    body[data-theme="dark"] .feature-list li {
+      color: var(--text-dark);
+    }
+
+    .service-list-icon {
+      color: var(--primary-green);
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    /* Hero section */
+    .hero-services {
+      background: linear-gradient(135deg, rgba(9, 76, 59, 0.03) 0%, rgba(255, 227, 83, 0.05) 100%);
+    }
+
+    .hero-title {
+      font-size: 45px;
+      
+    }
+
+    body[data-theme="dark"] .hero-title {
+      color: var(--text-dark);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      
+      max-width: 700px;
+    }
+
+    /* Why Compass section */
+    .why-compass-icon {
+      color: var(--primary-green);
+      font-size: 32px;
+      width: 48px;
+      flex-shrink: 0;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .feature-item strong {
+      font-size: 18px;
+      
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    body[data-theme="dark"] .feature-item strong {
+      color: var(--text-dark);
+    }
+
+    .feature-item span {
+      font-size: 18px;
+      
+    }
+
+    body[data-theme="dark"] .feature-item span {
+      color: #e0e0e0;
+    }
+
+    /* CTA block */
+    .cta-block {
+      background-color: var(--primary-green);
+      border-radius: 20px;
+      padding: 48px 40px;
+    }
+
+    .cta-block h3 {
+      color: var(--pure-white);
+      font-size: 23px;
+    }
+
+    .cta-block p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 18px;
+    }
+
+    /* Testimonial cards */
+    .testimonial-card {
+      background: #FCF9F0;
+      border-radius: 16px;
+      padding: 24px;
+      height: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    body[data-theme="dark"] .testimonial-card {
+      background: #2a2a2a;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .testimonial-card p {
+      font-size: 18px;
+      
+    }
+
+    body[data-theme="dark"] .testimonial-card p {
+      color: var(--text-dark);
+    }
+
+    .testimonial-card h6 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 16px;
+      margin-bottom: 4px;
+      
+    }
+
+    .testimonial-card span {
+      font-size: 16px;
+      color: #4a4a4a;
+    }
+
+    .quote-icon {
+      color: var(--accent-yellow);
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    /* Sticky header offset */
+    body {
+      padding-top: 82px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      h1 { font-size: 40px; }
+      h2 { font-size: 30px; }
+      .hero-title { font-size: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding-top: 72px; }
+      h1 { font-size: 34px; }
+      h2 { font-size: 28px; }
+      .card-title { font-size: 21px; }
+      .cta-block { padding: 32px 24px; }
+      .btn-primary-green, .btn-outline-green, .btn-yellow-accent, .card-btn-green { padding: 10px 20px; }
+      .why-compass-icon { font-size: 28px; width: 40px; }
+    }
+
+    @media (max-width: 576px) {
+      .service-card .card-body { padding: 1.25rem; }
+      .card-img-top { height: 200px; }
+    }
+
+    .img-fluid-real {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+
+  <!-- Dynamic Header Placeholder (existing - kept intact) -->
+  <div id="site-header" class="fixed-top"></div>
+
+  <!-- MAIN SERVICES PAGE CONTENT -->
+  <main>
+    <!-- Hero Section - with 35px bottom gap -->
+    <div class="hero-services section-vertical-gap" style="padding: 35px 50px 0 50px;">
+      <div class="container-fluid px-0">
+        <div class="row align-items-center">
+          <div class="col-lg-8 mx-auto text-center">
+            <h1 class="hero-title">Premium Real Estate<br>Services for Every Need</h1>
+            <p class="hero-sub mx-auto mt-3">From luxury residential properties to commercial investments and property management — Compass Housing delivers exceptional real estate solutions with market-leading expertise.</p>
+            <div class="mt-4 d-flex flex-wrap gap-3 justify-content-center">
+              <a href="contactus.html" class="btn-primary-green"><i class="fas fa-calendar-alt me-2"></i> Schedule Consultation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Grid Section - with 35px bottom gap -->
+    <div class="section-vertical-gap" style="padding: 35px 50px 0 50px;">
+      <div class="container-fluid px-0">
+        <div class="text-center mb-5">
+          <h2>Our Real Estate Services</h2>
+          <p style="font-size:18px; max-width: 700px; margin: 0 auto;">Comprehensive real estate solutions tailored to homeowners, investors, and developers.</p>
+        </div>
+        <div class="row g-4">
+          <!-- Card 1 - Residential Real Estate -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="service-card w-100">
+              <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Luxury residential real estate home">
+              <div class="card-body">
+                <div class="service-badge">Residential</div>
+                <h3 class="card-title">Residential Sales & Acquisition</h3>
+                <p class="card-text">Curated portfolio of luxury homes, condos, and suburban estates. Expert negotiation and market analysis for buyers and sellers.</p>
+                <ul class="feature-list">
+                  <li><i class="fas fa-home service-list-icon"></i> Luxury & First-time Homebuyers</li>
+                  <li><i class="fas fa-chart-line service-list-icon"></i> Market Valuation & Negotiation</li>
+                </ul>
+                <a href="index.html" class="card-btn-green">Find Your Home</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 - Commercial Real Estate -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="service-card w-100">
+              <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Commercial office building real estate">
+              <div class="card-body">
+                <div class="service-badge">Commercial</div>
+                <h3 class="card-title">Commercial Real Estate</h3>
+                <p class="card-text">Retail spaces, office towers, industrial warehouses, and mixed-use developments. Full-service leasing and investment advisory.</p>
+                <ul class="feature-list">
+                  <li><i class="fas fa-building service-list-icon"></i> Tenant & Landlord Representation</li>
+                  <li><i class="fas fa-chart-pie service-list-icon"></i> Investment Analysis</li>
+                </ul>
+                <a href="home2.html" class="card-btn-green">Explore Commercial</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 - Property Management -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="service-card w-100">
+              <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Property management team with keys">
+              <div class="card-body">
+                <div class="service-badge">Management</div>
+                <h3 class="card-title">Property Management</h3>
+                <p class="card-text">Full-service residential and commercial property management including tenant screening, maintenance, and legal compliance.</p>
+                <ul class="feature-list">
+                  <li><i class="fas fa-tools service-list-icon"></i> 24/7 Maintenance Support</li>
+                  <li><i class="fas fa-chart-simple service-list-icon"></i> Monthly Performance Reports</li>
+                </ul>
+                <a href="blog.html" class="card-btn-green">Manage Property</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 - Real Estate Investment -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="service-card w-100">
+              <img src="https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Real estate investment meeting">
+              <div class="card-body">
+                <div class="service-badge">Investment</div>
+                <h3 class="card-title">Real Estate Investment</h3>
+                <p class="card-text">Strategic investment consulting for portfolio diversification, opportunity zones, fix-and-flip projects, and passive income properties.</p>
+                <ul class="feature-list">
+                  <li><i class="fas fa-chart-pie service-list-icon"></i> ROI & Cash Flow Analysis</li>
+                  <li><i class="fas fa-flag-checkered service-list-icon"></i> Exit Strategy Planning</li>
+                </ul>
+                <a href="blog2.html" class="card-btn-green">Grow Wealth</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 5 - Luxury Estates -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="service-card w-100">
+              <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Luxury waterfront real estate estate">
+              <div class="card-body">
+                <div class="service-badge">Luxury Collection</div>
+                <h3 class="card-title">Luxury & Waterfront Estates</h3>
+                <p class="card-text">Exquisite villas, oceanfront properties, and penthouses with concierge-level marketing and global exposure for high-net-worth clients.</p>
+                <ul class="feature-list">
+                  <li><i class="fas fa-crown service-list-icon"></i> Private Showings</li>
+                  <li><i class="fas fa-globe service-list-icon"></i> Global Marketing Network</li>
+                </ul>
+                <a href="services2.html" class="card-btn-green">View Luxury</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 - Real Estate Development -->
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="service-card w-100">
+              <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Real estate development construction site">
+              <div class="card-body">
+                <div class="service-badge">Development</div>
+                <h3 class="card-title">Development Advisory</h3>
+                <p class="card-text">Land acquisition, feasibility studies, zoning approvals, and project management for residential subdivisions and mixed-use developments.</p>
+                <ul class="feature-list">
+                  <li><i class="fas fa-drafting-compass service-list-icon"></i> Feasibility & Permits</li>
+                  <li><i class="fas fa-hard-hat service-list-icon"></i> Cost-Benefit Optimization</li>
+                </ul>
+                <a href="blog2.html" class="card-btn-green">Start Project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Compass Section - with 35px bottom gap -->
+    <div class="section-vertical-gap" style="padding: 35px 50px 0 50px;">
+      <div class="container-fluid px-0">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <h2>Why Trust Compass Housing?</h2>
+            <p style="font-size:18px; margin-bottom: 32px;">With over a decade of real estate excellence, we combine local market expertise with innovative strategies to deliver exceptional results.</p>
+            <div>
+              <div class="feature-item">
+                <i class="fas fa-chart-line why-compass-icon"></i>
+                <div>
+                  <strong>Data-Driven Market Intelligence</strong>
+                  <span>Advanced analytics and comparative market analysis for accurate property valuation</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-handshake why-compass-icon"></i>
+                <div>
+                  <strong>Client-First Approach</strong>
+                  <span>Dedicated advisors providing personalized guidance throughout your real estate journey</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-globe why-compass-icon"></i>
+                <div>
+                  <strong>Global Real Estate Network</strong>
+                  <span>Strategic partnerships with 200+ affiliates for international property exposure</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img src="https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&w=800" class="img-fluid-real shadow" alt="Real estate professionals discussing property investment" style="width: 100%; height: auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+  </main>
+
+  <!-- Footer Placeholder (existing - kept intact) -->
+  <div id="side-footer"></div>
+
+  <!-- Scripts: Bootstrap, external header.js / footer.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+
+  <script>
+    (function () {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href').substring(1);
+          if (targetId) {
+            const targetElem = document.getElementById(targetId);
+            if (targetElem) {
+              e.preventDefault();
+              const headerOffset = 90;
+              const elementPosition = targetElem.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>

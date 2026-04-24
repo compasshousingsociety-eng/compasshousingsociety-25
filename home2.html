@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>compass | real estate showcase</title>
+  <!-- Bootstrap + icons + fonts (exactly as provided) -->
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ----- GLOBAL RESET & VARIABLES ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #094C3B;
+      --secondary: #FFE353;
+      --white: #FFFFFF;
+      --black: #000000;
+
+      --gap-section: 35px;
+      --border-radius-btn: 10px;
+      --border-radius-card: 20px;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--black);
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      line-height: normal;
+      overflow-x: hidden;
+    }
+
+    /* Background Logo - Light Mode (visible) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('images/transparent-logo-1.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 600px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Dark Mode - different opacity for logo */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1a1a1a;
+        color: #ffffff;
+      }
+
+      body::before {
+        opacity: 0.15;
+        filter: brightness(1.2);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: #ffffff !important;
+      }
+
+      .text-primary {
+        color: var(--white) !important;
+      }
+
+      .card-modern {
+        background-color: #2d2d2d;
+        border-color: rgba(255, 227, 83, 0.1);
+      }
+
+      .card-modern p {
+        color: #e0e0e0;
+      }
+
+      .navbar {
+        background-color: #2d2d2d !important;
+      }
+
+      .navbar-brand span:first-child {
+        color: var(--secondary) !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #ffffff;
+      }
+
+      .re-card {
+        background-color: #2d2d2d;
+      }
+
+      .text-black-50 {
+        color: #cccccc !important;
+      }
+
+      footer.bg-primary {
+        background-color: #094C3B !important;
+      }
+    }
+
+    /* ALL headings black (light mode) */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 45px;
+    }
+
+    h2 {
+      font-size: 33px;
+    }
+
+    h3 {
+      font-size: 23px;
+    }
+
+    h4 {
+      font-size: 22px;
+    }
+
+    h5 {
+      font-size: 21px;
+    }
+
+    h6 {
+      font-size: 20px;
+    }
+
+    p,
+    span,
+    a,
+    button,
+    li,
+    input,
+    textarea,
+    .btn,
+    .card-text,
+    .nav-link,
+    .footer-text {
+      font-size: 18px !important;
+      line-height: normal !important;
+    }
+
+    /* Capitalize first letter of each sentence */
+    p::first-letter,
+    h1::first-letter,
+    h2::first-letter,
+    h3::first-letter,
+    h4::first-letter,
+    h5::first-letter,
+    h6::first-letter,
+    .card-text::first-letter,
+    .nav-link::first-letter,
+    .btn::first-letter {
+      text-transform: uppercase;
+    }
+
+    /* Proper text alignment and spacing */
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-align: left;
+    }
+
+    .text-center p,
+    .text-center h1,
+    .text-center h2,
+    .text-center h3,
+    .text-center h4,
+    .text-center h5,
+    .text-center h6 {
+      text-align: center;
+    }
+
+    .card-modern p,
+    .card-modern h4 {
+      text-align: center;
+    }
+
+    /* sticky header */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1050;
+      background-color: var(--white);
+      box-shadow: 0 2px 15px rgba(9, 76, 59, 0.04);
+    }
+
+
+    .py-custom {
+      padding-top: 35px;
+      padding-bottom: 0;
+    }
+
+
+
+    /* color utilities */
+    .bg-primary {
+      background-color: var(--primary) !important;
+    }
+
+    .bg-secondary {
+      background-color: var(--secondary) !important;
+    }
+
+    .text-primary {
+      color: var(--primary) !important;
+    }
+
+    .text-secondary {
+      color: var(--secondary) !important;
+    }
+
+    /* ALL buttons – green, 14px 32px, 10px radius, NO HOVER/FOCUS */
+    .btn-styles {
+      padding: 14px 32px !important;
+      border-radius: var(--border-radius-btn) !important;
+      font-weight: 600;
+      background-color: var(--primary) !important;
+      border: 1px solid var(--primary) !important;
+      color: var(--white) !important;
+      transition: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    .btn-styles:hover,
+    .btn-styles:active,
+    .btn-styles:focus,
+    .btn-styles:focus-visible {
+      background-color: var(--primary) !important;
+      border-color: var(--primary) !important;
+      color: var(--white) !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    /* cards */
+    .card-modern {
+      /* background: var(--white); */
+      border: 1px solid #FFE353;
+      border-radius: var(--border-radius-card);
+      padding: 2rem 1.8rem;
+      height: 100%;
+      box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.02);
+    }
+
+    /* navbar */
+    .navbar-nav .nav-link {
+      color: var(--black);
+      padding: 0.5rem 1.2rem !important;
+      border-radius: 30px;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus {
+      color: var(--primary);
+      background-color: rgba(255, 227, 83, 0.15);
+    }
+
+    /* footer */
+    footer a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--secondary);
+    }
+
+    /* smooth animation */
+    .animate-close {
+      animation: closeFade 0.7s ease;
+    }
+
+    @keyframes closeFade {
+      0% {
+        opacity: 0.8;
+        transform: translateY(6px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* stack blocks */
+    .stack-block {
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* real estate card styles for two-side sections */
+    .re-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+      /* background: var(--white); */
+    }
+
+    .re-card-img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* NEW: different model section - "mole section" - image-focused showcase */
+    .mole-section {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+
+    .mole-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .mole-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .mole-item:hover img {
+      transform: scale(1.02);
+    }
+
+    .mole-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      color: white;
+      padding: 30px 20px 20px;
+    }
+
+    .mole-overlay h4 {
+      color: white !important;
+      margin-bottom: 5px;
+    }
+
+    .mole-overlay p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 10px;
+    }
+
+    .mole-overlay .price {
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .mole-main {
+      grid-row: span 2;
+      height: 500px;
+    }
+
+    .mole-small {
+      height: 240px;
+    }
+
+    /* Single line text where needed */
+    .single-line {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 768px) {
+      .container-custom {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+
+      .mole-section {
+        grid-template-columns: 1fr;
+      }
+
+      .mole-main {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <!-- sticky header (unchanged) -->
+  <div id="site-header" class="sticky-header">
+    <nav class="navbar navbar-expand-lg bg-white py-2">
+      <div class="container container-custom">
+        <a class="navbar-brand" href="#">
+          <span class="text-primary fw-bold" style="font-size: 30px;">⟁ Compass</span>
+          <span class="text-secondary" style="font-size: 22px;">Realty</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#">Work</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Expertise</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Studio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Journal</a></li>
+            <li class="nav-item"><a class="btn" href="#" style="padding: 10px 28px !important;">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- main content -->
+  <main class="compass-bg">
+    <!-- hero – real estate text -->
+    <section class="container container-custom py-custom section-block animate-close">
+      <div class="stack-block text-center">
+        <h1>Extraordinary Homes, Exceptional Service</h1>
+        <p class=" mx-auto single-line" style="max-width: 700px;">Curated estates in the world's most desirable
+          locations — from vineyards to oceanfront.</p>
+        <div class="d-flex justify-content-center gap-3 mt-5">
+          <a href="services.html"><button class="btn-styles">Explore Listings</button></a>
+          <a href="contactus.html"><button class="btn-styles">Private Consultation</button></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- expertise cards – real estate focus -->
+    <section class="container container-custom py-custom section-block">
+      <div class="stack-block text-center mb-5">
+        <h2>Our Expertise</h2>
+        <p class=" single-line">Bespoke real estate services</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card-modern text-center">
+            <i class="bi bi-house-check text-primary" style="font-size: 42px;"></i>
+            <h3 class="mt-4">Luxury Sales</h3>
+            <p class="mt-3">Discreet marketing & global buyer network for high‑value properties.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-modern text-center">
+            <i class="bi bi-tree text-primary" style="font-size: 42px;"></i>
+            <h3 class="mt-4">Estate & Ranch</h3>
+            <p class="mt-3">Vineyards, acreage, and legacy estates with development potential.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-modern text-center">
+            <i class="bi bi-gem text-primary" style="font-size: 42px;"></i>
+            <h3 class="mt-4">International</h3>
+            <p class="mt-3">Curated portfolio of chalets, penthouses, and villas worldwide.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: château in the hills (two-side with image) - real estate image updated -->
+    <section class="container container-custom py-custom section-block">
+      <div class="re-card">
+        <div class="row g-0 flex-row-reverse">
+          <div class="col-lg-6">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop"
+              alt="chateau estate" class="re-card-img" style="height: 100%; object-fit: cover;">
+          </div>
+          <div class="col-lg-6 p-5 d-flex flex-column justify-content-center">
+            <h2>Chateau In The Hills · $6.2M</h2>
+            <p class="mt-3">7 bed, 8 bath, working vineyard, guest house, pool, 12 acres. Authentic french architecture
+              with modern interiors. Private gated entry.</p>
+            <div class="d-flex gap-4 mt-3">
+              <span><i class="bi bi-geo-alt text-primary me-1"></i> Sonoma County</span>
+              <span><i class="bi bi-rulers text-primary me-1"></i> 8,400 sqft</span>
+            </div>
+            <a href="contactus.html">
+              <button class="btn-styles mt-4" style="align-self: flex-start;">Schedule Tour</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: completely different "mole section" – image-focused, no cards, real estate images (updated) -->
+    <section class="container container-custom py-custom section-block">
+      <div class="text-center mb-5">
+
+        <h2>Iconic Residences</h2>
+        <p class=" single-line">A curated selection of extraordinary homes</p>
+      </div>
+
+      <!-- mole section grid – different model, no cards, just images with overlays -->
+      <div class="mole-section">
+        <!-- main large item -->
+        <div class="mole-item mole-main">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop"
+            alt="oceanfront">
+          <div class="mole-overlay">
+            <h4>Oceanfront Modern</h4>
+            <p>6 bed · 7 bath · infinity pool · private beach</p>
+            <span class="price">$8.9M</span>
+          </div>
+        </div>
+        <!-- small top right -->
+        <div class="mole-item mole-small">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop"
+            alt="hillside">
+          <div class="mole-overlay">
+            <h4>Hillside Villa</h4>
+            <p>4 bed · 4 bath · canyon views</p>
+            <span class="price">$2.95M</span>
+          </div>
+        </div>
+        <!-- small bottom right -->
+        <div class="mole-item mole-small">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+            alt="mediterranean">
+          <div class="mole-overlay">
+            <h4>Mediterranean Estate</h4>
+            <p>5 bed · 5 bath · vineyard</p>
+            <span class="price">$4.2M</span>
+          </div>
+        </div>
+        <!-- extra item to fill grid (spans two columns) -->
+        <div class="mole-item" style="grid-column: span 2; height: 240px;">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop"
+            alt="lakefront">
+          <div class="mole-overlay">
+            <h4>Lakefront Retreat</h4>
+            <p>4 bed · 3 bath · private dock · boathouse</p>
+            <span class="price">$1.95M</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- team section – real estate agents (cards equal) -->
+    <section class="container container-custom py-custom section-block">
+      <div class="stack-block text-center mb-5">
+        <h2>Meet Your Advisors</h2>
+        <p class="single-line">Compass principals with decades of experience</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card-modern text-center">
+            <i class="bi bi-person-circle text-primary" style="font-size: 48px;"></i>
+            <h3 class="mt-3">Eleanor Vance</h3>
+            <!-- <p class="text-primary mb-1">Founder / Luxury Estates</p> -->
+            <p class="mt-2">20+ years in ultra‑high‑networth residential.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-modern text-center">
+            <i class="bi bi-person-circle text-primary" style="font-size: 48px;"></i>
+            <h3 class="mt-3">Marcus Ray</h3>
+            <!-- <p class="text-primary mb-1">International Sales</p> -->
+            <p class="mt-2">Specializes in european & caribbean properties.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-modern text-center">
+            <i class="bi bi-person-circle text-primary" style="font-size: 48px;"></i>
+            <h3 class="mt-3">Sophia Lin</h3>
+            <!-- <p class="text-primary mb-1">Architectural Advisor</p> -->
+            <p class="mt-2">Curates modern & legacy estates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- footer (completely unchanged - original) -->
+  <div id="side-footer">
+    <footer class="bg-primary text-white pt-5 pb-4">
+      <div class="container container-custom">
+        <div class="row gy-4">
+          <div class="col-lg-4">
+            <h5 class="text-secondary">Compass Studio</h5>
+            <p class="mt-3">Design & innovation for modern brands.</p>
+          </div>
+          <div class="col-lg-2 col-md-4">
+            <h6 class="text-secondary">Social</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Linkedin</a></li>
+              <li><a href="#">X</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-4">
+            <h6 class="text-secondary">Legal</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h6 class="text-secondary">Stay In Touch</h6>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Email address">
+              <button class="btn">Join</button>
+            </div>
+          </div>
+        </div>
+        <hr class="border-secondary opacity-25 mt-4">
+        <div class="text-center text-secondary small">© 2025 Compass Studio – All Rights Reserved</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+</body>
+
+</html>

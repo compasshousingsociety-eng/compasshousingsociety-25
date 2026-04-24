@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Compass Housing | Premium Real Estate</title>
+    <link rel="stylesheet" href="globalstyles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== COLOR SYSTEM ===== */
+        :root {
+            --primary: #094C3B;
+            --primary-dark: #04382b;
+            --accent: #FFE353;
+            --accent-dark: #e6cf4a;
+            --white: #FFFFFF;
+            --black: #000000;
+            --gray-light: #F9F9F7;
+            --transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --bg-dark: #000000;
+            --text-dark: #FFFFFF;
+            --card-bg-dark: #1a1a1a;
+            --footer-bg-dark: #0a0a0a;
+            --section-bg-light: #FFFFFF;
+            --section-bg-alt-light: #FEFAF0;
+        }
+
+        body {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Transparent Logo Background - Visible in Both Modes */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('images/transparent-logo-1.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 500px auto;
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body.dark-mode::before {
+            background-image: url('images/transparent-logo-1.png');
+            opacity: 0.10;
+        }
+
+        /* Dark Mode Styles - Complete Black Background */
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .sticky-header {
+            background-color: rgba(0, 0, 0, 0.96);
+            border-bottom-color: rgba(255, 227, 83, 0.3);
+        }
+
+        body.dark-mode .logo-text h4,
+        body.dark-mode .logo-text p,
+        body.dark-mode .nav-links a {
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .stat-block {
+            background: #1a1a1a;
+            border-left-color: var(--accent);
+        }
+
+        body.dark-mode .stat-number,
+        body.dark-mode .stat-block p {
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .premium-card,
+        body.dark-mode .value-card,
+        body.dark-mode .gallery-item,
+        body.dark-mode .team-card {
+            background: var(--card-bg-dark);
+            color: var(--text-dark);
+            border-color: rgba(255, 227, 83, 0.2);
+        }
+
+        body.dark-mode .premium-card h3,
+        body.dark-mode .premium-card p,
+        body.dark-mode .value-card h4,
+        body.dark-mode .value-card p,
+        body.dark-mode .gallery-caption,
+        body.dark-mode .team-info h4,
+        body.dark-mode .team-info p {
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .story-mission-section,
+        body.dark-mode .house-gallery,
+        body.dark-mode section {
+            background-color: var(--bg-dark) !important;
+        }
+
+        body.dark-mode footer {
+            background-color: var(--footer-bg-dark);
+        }
+
+        body.dark-mode .accent-badge {
+            background: rgba(255, 227, 83, 0.2);
+            color: var(--accent);
+        }
+
+        body.dark-mode .hero-image {
+            box-shadow: 0 30px 40px -20px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .bg-compass::before {
+            opacity: 0.05;
+        }
+
+        /* Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        .dark-mode-toggle:hover {
+            background: var(--accent);
+
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: var(--accent);
+
+        }
+
+        /* ===== TYPOGRAPHY HIERARCHY - EXACT SIZES ===== */
+        h1 {
+            font-size: 45px;
+            font-weight: 700;
+
+            margin: 0 0 18px 0;
+
+            letter-spacing: -0.01em;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode h5,
+        body.dark-mode h6 {
+            color: var(--accent);
+        }
+
+        h2 {
+            font-size: 33px;
+            font-weight: 600;
+
+
+
+        }
+
+        h3 {
+            font-size: 23px;
+            font-weight: 600;
+
+            margin: 0 0 10px 0;
+
+        }
+
+        h4 {
+            font-size: 22px;
+            font-weight: 600;
+
+            margin: 0 0 8px 0;
+
+        }
+
+        h5 {
+            font-size: 21px;
+            font-weight: 600;
+
+            margin: 0 0 6px 0;
+
+        }
+
+        h6 {
+            font-size: 20px;
+            font-weight: 600;
+
+            margin: 0 0 6px 0;
+
+        }
+
+        p,
+        li,
+        .stat-label,
+        .card-text,
+        .footer-text,
+        span,
+        a,
+        .gallery-caption,
+        .team-info p,
+        .value-card p,
+        .premium-card p,
+        .hero-content p,
+        .cta-block p,
+        .contact-detail,
+        .nav-links a,
+        .btn,
+        .stat-number {
+            font-size: 18px;
+
+        }
+
+        /* ===== BUTTONS - ALL GREEN BG, NO HOVER EFFECTS ===== */
+        .btn-primary,
+        .btn-cta,
+        .contact-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 48px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            background-color: var(--white);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-cta:hover,
+        .btn-cta:focus,
+        .contact-btn:hover,
+        .contact-btn:focus {
+            background-color: var(--white);
+            transform: none;
+            outline: none;
+        }
+
+        .contact-btn {
+            padding: 10px 28px;
+            border-radius: 40px;
+        }
+
+        /* ===== STICKY HEADER (PRESERVED) ===== */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 227, 83, 0.4);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,15 85,35 85,65 50,85 15,65 15,35" fill="none" stroke="%23094C3B" stroke-width="3" stroke-opacity="0.9"/><circle cx="50" cy="50" r="18" fill="none" stroke="%23FFE353" stroke-width="2.8"/><path d="M50 32 L50 68 M32 50 L68 50" stroke="%23094C3B" stroke-width="2.5"/></svg>');
+            background-size: contain;
+        }
+
+        body.dark-mode .logo-icon {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,15 85,35 85,65 50,85 15,65 15,35" fill="none" stroke="%23FFE353" stroke-width="3" stroke-opacity="0.9"/><circle cx="50" cy="50" r="18" fill="none" stroke="%23FFE353" stroke-width="2.8"/><path d="M50 32 L50 68 M32 50 L68 50" stroke="%23FFE353" stroke-width="2.5"/></svg>');
+        }
+
+        .logo-text h4 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: -0.3px;
+
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.7;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-links a {
+
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus,
+        .nav-links a.active {
+            border-bottom-color: var(--accent);
+
+        }
+
+        body.dark-mode .nav-links a:hover,
+        body.dark-mode .nav-links a:focus {
+            color: var(--accent);
+        }
+
+        /* ===== SECTION PADDING: 35px 50px 0 50px ===== */
+        section {
+            padding: 35px 50px 0 50px;
+            /* background-color: transparent; */
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Background Compass transparent pattern - Light only */
+        .bg-compass {
+            position: relative;
+            background-color: transparent;
+        }
+
+        .bg-compass::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" opacity="0.02"><polygon points="60,15 100,37 100,83 60,105 20,83 20,37" fill="none" stroke="%23094C3B" stroke-width="1.2"/><circle cx="60" cy="60" r="16" stroke="%23FFE353" stroke-width="1" fill="none"/><path d="M60 44 L60 76 M44 60 L76 60" stroke="%23094C3B" stroke-width="1"/></svg>');
+            background-repeat: repeat;
+            background-size: 65px;
+            pointer-events: none;
+        }
+
+        body.dark-mode .bg-compass::before {
+            opacity: 0.03;
+        }
+
+        .container,
+        .header-container,
+        footer .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section */
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-content {
+            flex: 1.2;
+        }
+
+        .hero-image {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-block {
+            background: #FEF9EF;
+            padding: 12px 20px;
+            border-radius: 28px;
+            min-width: 130px;
+            text-align: center;
+            border-left: 4px solid var(--accent);
+        }
+
+        body.dark-mode .stat-block {
+            background: #1a1a1a;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+
+            margin-bottom: 6px;
+        }
+
+        .two-columns-premium {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            margin-top: 40px;
+        }
+
+        .premium-card {
+            flex: 1;
+            /* background: var(--white); */
+            padding: 40px 36px;
+            border-radius: 36px;
+            transition: var(--transition);
+            border-bottom: 5px solid var(--accent);
+            box-shadow: 0 15px 35px rgba(9, 76, 59, 0.05);
+        }
+
+        /* Value Pillars */
+        .values-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .value-card {
+            flex: 1;
+            min-width: 240px;
+            /* background: var(--white); */
+            padding: 36px 28px;
+            text-align: center;
+            border-radius: 28px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 227, 83, 0.4);
+        }
+
+        .value-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            flex: 1;
+            min-width: 260px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gallery-caption {
+            padding: 18px;
+            text-align: center;
+            font-weight: 600;
+
+        }
+
+        body.dark-mode .gallery-caption {
+            background: var(--card-bg-dark);
+        }
+
+        /* Leadership Team */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .team-card {
+            flex: 1;
+            min-width: 270px;
+            /* background: white; */
+            border-radius: 36px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.08);
+        }
+
+        .team-img {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s;
+        }
+
+        .team-info {
+            padding: 28px 24px 32px;
+            border-top: 3px solid var(--accent);
+        }
+
+        .team-info p {
+            margin-bottom: 8px;
+        }
+
+        /* CTA Block */
+        .cta-block {
+            background: linear-gradient(125deg, var(--primary) 0%, #0B5E48 100%);
+            border-radius: 56px;
+            padding: 70px 48px;
+            text-align: center;
+        }
+
+        .cta-block h2 {
+            color: var(--white);
+        }
+
+        .cta-block p {
+            color: #FFF2DE;
+        }
+
+
+        /* Responsive - All Dimensions */
+        @media (max-width: 1024px) {
+
+            .container,
+            .header-container {
+                padding: 0 28px;
+            }
+
+            section {
+                padding: 35px 30px 0 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .hero-grid {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .two-columns-premium {
+                flex-direction: column;
+            }
+
+            .cta-block {
+                padding: 48px 24px;
+            }
+
+            .stat-number {
+                font-size: 32px;
+            }
+
+            section {
+                padding: 35px 20px 0 20px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .gallery-item {
+                min-width: calc(50% - 28px);
+            }
+
+            .team-card {
+                min-width: calc(50% - 40px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .btn-primary,
+            .btn-cta {
+                padding: 12px 24px;
+            }
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="site-header" class="fixed-top"></div>
+
+    <main class="bg-compass">
+        <!-- SECTION 1: Hero with Real Estate Focus -->
+        <section>
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <h1>Crafting Landmarks,<br>Elevating Communities</h1>
+                        <p>For over 16 years, Compass Housing has been synonymous with architectural brilliance and
+                            trust. With a portfolio spanning luxury high-rises, eco-conscious townships, and bespoke
+                            villas, we've redefined modern living. Every square foot tells a story of passion and
+                            precision.</p>
+
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Modern luxury real estate property">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Story & Mission -->
+        <section class="story-mission-section">
+            <div class="container">
+                <div class="text-center" style="max-width: 800px; margin: 0 auto 20px;">
+
+                    <h2 style="margin-top: 18px;">Where Vision Meets Architecture</h2>
+                    <p>Rooted in transparency, driven by design — we build more than properties, we build futures.</p>
+                </div>
+                <div class="two-columns-premium">
+                    <div class="premium-card">
+                        <h3>📜 The Compass Story</h3>
+                        <p>Founded by visionary real estate entrepreneurs, Compass Housing started with a single
+                            renovation project in the historic district. Today, we're a benchmark for sustainable
+                            luxury, completing over 5 million sq. ft. of residential and mixed-use spaces. Our journey
+                            is defined by lasting relationships, innovative blueprints, and a deep respect for the
+                            environment.</p>
+
+                    </div>
+                    <div class="premium-card">
+                        <h3>🎯 Mission & Vision</h3>
+                        <p><strong>Mission:</strong> To deliver inspiring spaces that enrich lives while setting new
+                            standards in design ethics and customer-centricity. <br><br> <strong>Vision:</strong> To be
+                            the most trusted real estate partner across North America, pioneering net-zero communities
+                            and timeless architecture that harmonizes with nature.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Core Values -->
+        <section>
+            <div class="container">
+                <div class="text-center">
+                    <h2>Our Pillars of Excellence</h2>
+                    <p>Guiding every decision, every design, every door we open.</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🏛️</div>
+                        <h3>Architectural Integrity</h3>
+                        <p>Iconic facades, functional layouts, timeless elegance.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌱</div>
+                        <h3>Eco-Conscious Living</h3>
+                        <p>Solar-ready homes, rainwater harvesting, green belts.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h3>Radical Transparency</h3>
+                        <p>Clear contracts, real-time updates, zero hidden fees.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">📈</div>
+                        <h3>Investment Confidence</h3>
+                        <p>High ROI projects, prime locations, future-proof assets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: House Gallery - Signature Residences -->
+        <section class="house-gallery">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 32px;">
+                    <h2>Our Signature Residences</h2>
+                    <p>Discover the craftsmanship behind every Compass home.</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-img"
+                            style="background-image: url('https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                        </div>
+                        <div class="gallery-caption">🏡 Modern Hillside Estate</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-img"
+                            style="background-image: url('https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                        </div>
+                        <div class="gallery-caption">🌿 Mediterranean Villa</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-img"
+                            style="background-image: url('https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                        </div>
+                        <div class="gallery-caption">✨ Contemporary Glass House</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Leadership Team -->
+        <section>
+            <div class="container">
+                <div class="text-center" style="margin-bottom:8px;">
+                    <h2>Visionary Leadership</h2>
+                    <p>The minds shaping the future of luxury residential landscapes.</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-img"
+                            style="background-image: url('https://images.pexels.com/photos/3777564/pexels-photo-3777564.jpeg?auto=compress&cs=tinysrgb&w=600'); background-position: center 30%;">
+                        </div>
+                        <div class="team-info">
+                            <h3>Elena Vasquez</h3>
+                            <p style="color: #FFE353; font-weight: 700;">Founder & CEO</p>
+                            <p>30+ years in global real estate, named "Developer of the Year" 2023.</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-img"
+                            style="background-image: url('https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=600'); background-position: center 20%;">
+                        </div>
+                        <div class="team-info">
+                            <h3>David Okafor</h3>
+                            <p style="color: #FFE353; font-weight: 700;">Chief Design Officer</p>
+                            <p>AI-driven architecture & sustainable masterplans. Harvard GSD alumni.</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-img"
+                            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfW9LQtQKO4roNxvy6YoGrHWT47NvzFA71NA&s'); background-position: center 40%;">
+                        </div>
+                        <div class="team-info">
+                            <h3>Priya Mehta</h3>
+                            <p style="color: #FFE353; font-weight: 700;">Managing Partner</p>
+                            <p>Investment strategist, closed $2B+ in luxury residential portfolios.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer - PRESERVED ORIGINAL STRUCTURE -->
+    <div id="side-footer"></div>
+
+
+    <script>
+        // Dark Mode Toggle Functionality
+        function initDarkMode() {
+            const darkModeToggle = document.createElement('button');
+            darkModeToggle.className = 'dark-mode-toggle';
+            darkModeToggle.innerHTML = '🌙 Dark Mode';
+            darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
+
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks) {
+                navLinks.appendChild(darkModeToggle);
+            }
+
+            // Check for saved preference
+            const savedMode = localStorage.getItem('darkMode');
+            if (savedMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '☀️ Light Mode';
+            }
+
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                if (isDarkMode) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    darkModeToggle.innerHTML = '☀️ Light Mode';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    darkModeToggle.innerHTML = '🌙 Dark Mode';
+                }
+            });
+        }
+
+        // Initialize dark mode when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initDarkMode);
+        } else {
+            initDarkMode();
+        }
+    </script>
+    <script src="footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="header.js"></script>
+</body>
+
+</html>

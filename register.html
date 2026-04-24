@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Compass Housing | Register & Login - Premium Real Estate</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ONLY 4 COLORS - Same as contact page */
+    :root {
+      --primary: #094C3B;
+      --accent: #FFE353;
+      --white: #FFFFFF;
+      --black: #000000;
+      --error-red: #dc3545;
+      --error-bg: #f8d7da;
+    }
+
+    body {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('images/transparent-logo-1.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 500px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    h1 {
+      font-size: 45px;
+      font-weight: 700;
+      color: var(--black);
+      margin: 0 0 18px 0;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-size: 33px;
+      font-weight: 600;
+      color: var(--black);
+      margin: 0 0 14px 0;
+      line-height: 1.4;
+    }
+
+    h3 {
+      font-size: 23px;
+      font-weight: 600;
+      color: var(--black);
+      margin: 0 0 10px 0;
+      line-height: 1.4;
+    }
+
+    h4 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--black);
+      margin: 0 0 8px 0;
+      line-height: 1.4;
+    }
+
+    p,
+    li,
+    span,
+    a,
+    label,
+    input,
+    textarea {
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      background-color: var(--primary);
+      color: var(--white);
+      width: 100%;
+    }
+
+    /* No hover, focus, active effects */
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+      background-color: var(--primary);
+      color: var(--white);
+      transform: none;
+      outline: none;
+      box-shadow: none;
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+      padding: 14px 0;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,15 85,35 85,65 50,85 15,65 15,35" fill="none" stroke="%23094C3B" stroke-width="3" stroke-opacity="0.9"/><circle cx="50" cy="50" r="18" fill="none" stroke="%23FFE353" stroke-width="2.8"/><path d="M50 32 L50 68 M32 50 L68 50" stroke="%23094C3B" stroke-width="2.5"/></svg>');
+      background-size: contain;
+    }
+
+    .logo-text h4 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+      color: var(--primary);
+    }
+
+    .logo-text p {
+      font-size: 14px;
+      opacity: 0.7;
+      margin: 0;
+      color: var(--black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 18px;
+      padding: 8px 0;
+      border-bottom: 2px solid transparent;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus,
+    .nav-links a.active {
+      border-bottom-color: var(--accent);
+      color: var(--primary);
+    }
+
+    section {
+      padding: 35px 50px 0 50px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Auth Page Layout */
+    .auth-page-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 620px;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      border: 1px solid var(--accent);
+    }
+
+    .image-side {
+      flex: 1.2;
+      min-width: 320px;
+      background: var(--primary);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      overflow: hidden;
+    }
+
+    .image-side::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .image-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--white);
+      max-width: 400px;
+    }
+
+    .image-content h2 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 36px;
+    }
+
+    .image-content p {
+      color: var(--white);
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .feature-list-side {
+      list-style: none;
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    .feature-list-side li {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+    }
+
+    .feature-list-side li i {
+      color: var(--accent);
+      font-size: 20px;
+    }
+
+    .form-side {
+      flex: 1;
+      min-width: 400px;
+      padding: 48px 44px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 32px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      font-weight: 700;
+      padding: 12px 0;
+      cursor: pointer;
+      font-family: inherit;
+      position: relative;
+      color: var(--primary);
+      opacity: 0.7;
+      transition: 0.2s;
+    }
+
+    .tab-btn.active {
+      opacity: 1;
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .auth-form {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .auth-form.active-form {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Form Styles - EXACTLY like contact page */
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .form-group label .required {
+      color: var(--error-red);
+      margin-left: 4px;
+      font-weight: 700;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 18px;
+      border: 2px solid #e0e4e3;
+      border-radius: 10px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 227, 83, 0.2);
+    }
+
+    .field-hint {
+      font-size: 14px;
+      color: #6c757d;
+      margin-top: 5px;
+    }
+
+    .error-message {
+      color: var(--error-red);
+      font-size: 15px;
+      margin-top: 6px;
+      display: none;
+      background: var(--error-bg);
+      padding: 8px 12px;
+      border-radius: 12px;
+      border-left: 3px solid var(--error-red);
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .form-group.error input {
+      border-color: var(--error-red);
+      background-color: rgba(220, 53, 69, 0.05);
+    }
+
+    .success-message {
+      background: var(--primary);
+      color: var(--white);
+      padding: 16px 24px;
+      border-radius: 28px;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .switch-text {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 18px;
+    }
+
+    .switch-link {
+      color: var(--primary);
+      font-weight: 700;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 18px;
+      text-decoration: underline;
+      font-family: inherit;
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 56px 0 32px;
+      margin-top: 20px;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .footer-col h5 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 21px;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      color: var(--white);
+      font-size: 16px;
+      margin: 10px 0;
+      display: block;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--accent);
+      color: var(--white);
+    }
+
+    @media (max-width: 1024px) {
+      section {
+        padding: 35px 30px 0 30px;
+      }
+
+      .header-container {
+        padding: 0 28px;
+      }
+
+      .form-side {
+        padding: 35px 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .auth-page-wrapper {
+        flex-direction: column;
+      }
+
+      .image-side {
+        min-height: 320px;
+      }
+
+      .form-side {
+        min-width: 100%;
+      }
+
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      section {
+        padding: 35px 20px 0 20px;
+      }
+
+      .tab-btn {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-side {
+        padding: 28px 20px;
+      }
+
+      .image-content h2 {
+        font-size: 28px;
+      }
+    }
+
+    /* Password wrapper icon - clean style, no extra line */
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 48px;
+    }
+
+    .toggle-password-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #6c757d;
+      font-size: 1.25rem;
+      z-index: 5;
+      background: transparent;
+      transition: color 0.2s;
+    }
+
+    .toggle-password-icon:hover {
+      color: var(--primary);
+    }
+
+    /* Remove default password reveal icon (Edge, Chrome) */
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+      display: none;
+    }
+
+    input[type="password"]::-webkit-credentials-auto-fill-button,
+    input[type="password"]::-webkit-password-toggle-button {
+      display: none !important;
+    }
+
+    input[type="password"] {
+      appearance: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="site-header" class="fixed-top"></div>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="auth-page-wrapper">
+          <!-- Left Side: Attractive Real Estate Image Content -->
+          <div class="image-side">
+            <div class="image-content">
+              <i class="fas fa-home" style="font-size: 64px; color: var(--accent); margin-bottom: 20px;"></i>
+              <h2>Find Your Dream Home</h2>
+              <p>Join thousands of happy homeowners who found their perfect property with Compass Housing</p>
+              <ul class="feature-list-side">
+                <li><i class="fas fa-check-circle"></i> Premium Property Listings</li>
+                <li><i class="fas fa-check-circle"></i> Expert Investment Advice</li>
+                <li><i class="fas fa-check-circle"></i> 24/7 Dedicated Support</li>
+                <li><i class="fas fa-check-circle"></i> Virtual Property Tours</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right Side: Register/Login Form -->
+          <div class="form-side">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-form="register">Register Details</button>
+              <!-- <button class="tab-btn" data-form="login">Login</button> -->
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form active-form">
+              <form id="registerUserForm">
+                <div class="form-group" id="regNameGroup">
+                  <label>Full Name <span class="required">*</span></label>
+                  <input type="text" id="regName" placeholder="John Anderson" autocomplete="off" maxlength="50">
+                  <div class="error-message" id="regNameError"><i class="fas fa-exclamation-circle"></i> Please enter a
+                    valid name (letters only, 2-50 characters)</div>
+                </div>
+
+                <div class="form-group" id="regEmailGroup">
+                  <label>Email Address <span class="required">*</span></label>
+                  <input type="email" id="regEmail" placeholder="john@example.com" autocomplete="off" maxlength="100">
+                  <div class="error-message" id="regEmailError"><i class="fas fa-exclamation-circle"></i> Please enter a
+                    valid email address (e.g., name@domain.com, .in, .org, .net)</div>
+                </div>
+
+                <div class="form-group" id="regPhoneGroup">
+                  <label>Phone Number <span class="required">*</span></label>
+                  <input type="tel" id="regPhone" placeholder="6XXXXXXXXX" autocomplete="off" maxlength="10">
+                  <div class="error-message" id="regPhoneError"><i class="fas fa-exclamation-circle"></i> Please enter a
+                    valid 10-digit mobile number starting with 6,7,8, or 9</div>
+                </div>
+
+                <div class="form-group" id="regPassGroup">
+                  <label>Password <span class="required">*</span></label>
+                  <div class="password-wrapper">
+                    <input type="password" id="regPassword" placeholder="••••••••" autocomplete="off" maxlength="20">
+                    <i class="fa-regular fa-eye toggle-password-icon" id="toggleRegPass"></i>
+                  </div>
+                  <div class="error-message" id="regPassError"><i class="fas fa-exclamation-circle"></i> Password must
+                    be 6-20 characters long</div>
+                </div>
+
+                <button type="submit" class="btn-primary">Create Account</button>
+                <div class="success-message" id="regSuccessMsg"><i class="fas fa-check-circle"></i> Registration
+                  successful! You can now log in.</div>
+              </form>
+              <div class="switch-text">Already have an account? <button class="switch-link" data-switch="login">Click
+                  here to Login</button></div>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+              <form id="loginUserForm">
+                <div class="form-group" id="loginEmailGroup">
+                  <label>Email Address <span class="required">*</span></label>
+                  <input type="email" id="loginEmail" placeholder="john@example.com" autocomplete="off" maxlength="100">
+                  <div class="error-message" id="loginEmailError"><i class="fas fa-exclamation-circle"></i> Please enter
+                    a valid email address (e.g., name@domain.com, .in, .org, .net)</div>
+                </div>
+
+                <div class="form-group" id="loginPassGroup">
+                  <label>Password <span class="required">*</span></label>
+                  <div class="password-wrapper">
+                    <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="off" maxlength="20">
+                    <i class="fa-regular fa-eye toggle-password-icon" id="toggleLoginPass"></i>
+                  </div>
+                  <div class="error-message" id="loginPassError"><i class="fas fa-exclamation-circle"></i> Password is
+                    required (6-20 characters)</div>
+                </div>
+
+                <button type="submit" class="btn-primary">Login →</button>
+                <div class="success-message" id="loginSuccessMsg"><i class="fas fa-check-circle"></i> Login successful!
+                  Welcome back.</div>
+              </form>
+              <div class="switch-text">Don't have an account? <button class="switch-link" data-switch="register">Click
+                  here to Register</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="side-footer"></div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+
+  <script>
+    // Validation Patterns - same for register and login
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z-]+\.(com|in|org|net)$/i;
+    const namePattern = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const phonePattern = /^[6-9][0-9]{9}$/;
+    const passwordPattern = /^.{6,20}$/;
+
+    // Tab Switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const registerDiv = document.getElementById('registerForm');
+    const loginDiv = document.getElementById('loginForm');
+
+    function switchToForm(formType) {
+      if (formType === 'register') {
+        registerDiv.classList.add('active-form');
+        loginDiv.classList.remove('active-form');
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        document.querySelector('[data-form="register"]').classList.add('active');
+      } else {
+        loginDiv.classList.add('active-form');
+        registerDiv.classList.remove('active-form');
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        document.querySelector('[data-form="login"]').classList.add('active');
+      }
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => switchToForm(btn.getAttribute('data-form')));
+    });
+
+    // Switch via "Click here to Login / Register" links
+    document.querySelectorAll('.switch-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = link.getAttribute('data-switch');
+        if (target) switchToForm(target);
+      });
+    });
+
+    // Real-time Input Restrictions
+    const regNameInput = document.getElementById('regName');
+    if (regNameInput) {
+      regNameInput.addEventListener('input', function () {
+        let value = this.value;
+        value = value.replace(/[^A-Za-z\s]/g, '');
+        value = value.replace(/\s+/g, ' ');
+        value = value.replace(/^\s+/, '');
+        this.value = value;
+        document.getElementById('regNameGroup').classList.remove('error');
+        document.getElementById('regNameError').classList.remove('show');
+      });
+    }
+
+    const regPhoneInput = document.getElementById('regPhone');
+    if (regPhoneInput) {
+      regPhoneInput.addEventListener('input', function () {
+        let value = this.value;
+        value = value.replace(/\D/g, '');
+        if (value.length >= 1) {
+          const firstDigit = value.charAt(0);
+          if (firstDigit >= '0' && firstDigit <= '5') {
+            value = '';
+          }
+        }
+        if (value.length > 10) value = value.slice(0, 10);
+        this.value = value;
+        document.getElementById('regPhoneGroup').classList.remove('error');
+        document.getElementById('regPhoneError').classList.remove('show');
+      });
+    }
+
+    const regEmailInput = document.getElementById('regEmail');
+    if (regEmailInput) {
+      regEmailInput.addEventListener('input', function () {
+        this.value = this.value.replace(/\s/g, '');
+        document.getElementById('regEmailGroup').classList.remove('error');
+        document.getElementById('regEmailError').classList.remove('show');
+      });
+    }
+
+    const regPassInput = document.getElementById('regPassword');
+    if (regPassInput) {
+      regPassInput.addEventListener('input', function () {
+        document.getElementById('regPassGroup').classList.remove('error');
+        document.getElementById('regPassError').classList.remove('show');
+      });
+    }
+
+    // Login real-time
+    const loginEmailInput = document.getElementById('loginEmail');
+    if (loginEmailInput) {
+      loginEmailInput.addEventListener('input', function () {
+        this.value = this.value.replace(/\s/g, '');
+        document.getElementById('loginEmailGroup').classList.remove('error');
+        document.getElementById('loginEmailError').classList.remove('show');
+      });
+    }
+
+    const loginPassInput = document.getElementById('loginPassword');
+    if (loginPassInput) {
+      loginPassInput.addEventListener('input', function () {
+        document.getElementById('loginPassGroup').classList.remove('error');
+        document.getElementById('loginPassError').classList.remove('show');
+      });
+    }
+
+    // Helper: toggle password visibility (eye icon)
+    function setupPasswordToggle(toggleBtn, passwordField) {
+      if (!toggleBtn || !passwordField) return;
+      toggleBtn.addEventListener('click', function () {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        // Toggle between fa-eye and fa-eye-slash
+        if (type === 'text') {
+          this.classList.remove('fa-eye');
+          this.classList.add('fa-eye-slash');
+        } else {
+          this.classList.remove('fa-eye-slash');
+          this.classList.add('fa-eye');
+        }
+      });
+    }
+
+    const toggleReg = document.getElementById('toggleRegPass');
+    const regPasswordField = document.getElementById('regPassword');
+    setupPasswordToggle(toggleReg, regPasswordField);
+
+    const toggleLogin = document.getElementById('toggleLoginPass');
+    const loginPasswordField = document.getElementById('loginPassword');
+    setupPasswordToggle(toggleLogin, loginPasswordField);
+
+    // Register Form Submission
+    const registerForm = document.getElementById('registerUserForm');
+    if (registerForm) {
+      registerForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let isValid = true;
+
+        const fullName = document.getElementById('regName').value.trim();
+        const email = document.getElementById('regEmail').value.trim().replace(/\s/g, '');
+        const phone = document.getElementById('regPhone').value.trim();
+        const password = document.getElementById('regPassword').value;
+
+        // Reset errors & success
+        document.getElementById('regNameGroup').classList.remove('error');
+        document.getElementById('regNameError').classList.remove('show');
+        document.getElementById('regEmailGroup').classList.remove('error');
+        document.getElementById('regEmailError').classList.remove('show');
+        document.getElementById('regPhoneGroup').classList.remove('error');
+        document.getElementById('regPhoneError').classList.remove('show');
+        document.getElementById('regPassGroup').classList.remove('error');
+        document.getElementById('regPassError').classList.remove('show');
+        document.getElementById('regSuccessMsg').classList.remove('show');
+
+        // Name validation
+        if (fullName === '' || !namePattern.test(fullName) || fullName.length < 2 || fullName.length > 50) {
+          document.getElementById('regNameGroup').classList.add('error');
+          document.getElementById('regNameError').classList.add('show');
+          isValid = false;
+        }
+
+        // Email validation
+        if (email === '' || !emailPattern.test(email)) {
+          document.getElementById('regEmailGroup').classList.add('error');
+          document.getElementById('regEmailError').innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid email address (e.g., name@domain.com, .in, .org, .net)';
+          document.getElementById('regEmailError').classList.add('show');
+          isValid = false;
+        }
+
+        // Phone validation
+        if (phone === '' || !phonePattern.test(phone) || phone.length !== 10) {
+          document.getElementById('regPhoneGroup').classList.add('error');
+          document.getElementById('regPhoneError').classList.add('show');
+          isValid = false;
+        }
+
+        // Password validation (6-20 chars)
+        if (password === '' || !passwordPattern.test(password)) {
+          document.getElementById('regPassGroup').classList.add('error');
+          document.getElementById('regPassError').classList.add('show');
+          isValid = false;
+        }
+
+        if (isValid) {
+          const userData = { name: fullName, email: email, phone: phone, password: password };
+          localStorage.setItem('compass_user', JSON.stringify(userData));
+
+          const successMsg = document.getElementById('regSuccessMsg');
+          successMsg.classList.add('show');
+          registerForm.reset();
+
+          setTimeout(() => {
+            successMsg.classList.remove('show');
+            switchToForm('login');
+          }, 2000);
+        }
+      });
+    }
+
+    // Login Form Submission - Accepts any valid email format (not just registered email)
+    // But still validates against stored user credentials
+    // Login Form Submission - Separate error messages for email and password fields
+    const loginForm = document.getElementById('loginUserForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let isValid = true;
+
+        const email = document.getElementById('loginEmail').value.trim().replace(/\s/g, '');
+        const password = document.getElementById('loginPassword').value;
+
+        // Reset errors and success msg
+        document.getElementById('loginEmailGroup').classList.remove('error');
+        document.getElementById('loginEmailError').classList.remove('show');
+        document.getElementById('loginPassGroup').classList.remove('error');
+        document.getElementById('loginPassError').classList.remove('show');
+        document.getElementById('loginSuccessMsg').classList.remove('show');
+
+        // Email validation - ONLY PATTERN VALIDATION (any valid email format accepted)
+        if (email === '') {
+          document.getElementById('loginEmailGroup').classList.add('error');
+          document.getElementById('loginEmailError').innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter your email address';
+          document.getElementById('loginEmailError').classList.add('show');
+          isValid = false;
+        } else if (!emailPattern.test(email)) {
+          document.getElementById('loginEmailGroup').classList.add('error');
+          document.getElementById('loginEmailError').innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid email address (e.g., name@domain.com, .in, .org, .net)';
+          document.getElementById('loginEmailError').classList.add('show');
+          isValid = false;
+        }
+
+        // Password validation - must be 6-20 chars (same as register requirement)
+        if (password === '') {
+          document.getElementById('loginPassGroup').classList.add('error');
+          document.getElementById('loginPassError').innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter your password';
+          document.getElementById('loginPassError').classList.add('show');
+          isValid = false;
+        } else if (!passwordPattern.test(password)) {
+          document.getElementById('loginPassGroup').classList.add('error');
+          document.getElementById('loginPassError').innerHTML = '<i class="fas fa-exclamation-circle"></i> Password must be 6-20 characters long';
+          document.getElementById('loginPassError').classList.add('show');
+          isValid = false;
+        }
+
+        if (isValid) {
+          const storedUser = JSON.parse(localStorage.getItem('compass_user'));
+          // Check if user exists AND credentials match
+          if (storedUser && storedUser.email === email && storedUser.password === password) {
+            const successMsg = document.getElementById('loginSuccessMsg');
+            successMsg.classList.add('show');
+            loginForm.reset();
+            setTimeout(() => {
+              successMsg.classList.remove('show');
+              alert('Welcome back to Compass Housing, ' + storedUser.name + '!');
+            }, 1500);
+          } else {
+            // Check if email exists but password is wrong
+            if (storedUser && storedUser.email === email && storedUser.password !== password) {
+              // Password is wrong - show error on password field
+              document.getElementById('loginPassGroup').classList.add('error');
+              document.getElementById('loginPassError').innerHTML = '<i class="fas fa-exclamation-circle"></i> Incorrect password. Please try again.';
+              document.getElementById('loginPassError').classList.add('show');
+            }
+            // Check if email doesn't exist in storage
+            else if (!storedUser || storedUser.email !== email) {
+              // Email not registered - show error on email field
+              document.getElementById('loginEmailGroup').classList.add('error');
+              document.getElementById('loginEmailError').innerHTML = '<i class="fas fa-exclamation-circle"></i> This email is not registered. Please provide a registered email address.';
+              document.getElementById('loginEmailError').classList.add('show');
+            }
+          }
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

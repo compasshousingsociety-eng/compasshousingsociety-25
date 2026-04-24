@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Compass Housing | Residential Sales Service Details</title>
+  <link rel="stylesheet" href="globalstyles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ----- GLOBAL RESET & 3-COLOR SYSTEM (#094C3B, #FFE353, WHITE, BLACK) ----- */
+    :root {
+      --primary-green: #094C3B;
+      --accent-yellow: #FFE353;
+      --pure-white: #FFFFFF;
+      --pure-black: #000000;
+      --bg-dark: #121212;
+      --text-dark: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      background-color: var(--pure-white);
+
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background transparent Compass Housing Society logo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('images/transparent-logo-1.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 500px auto;
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body[data-theme="dark"] {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body[data-theme="dark"]::before {
+      opacity: 0.15;
+    }
+
+    /* ===== TYPOGRAPHY - STRICT HIERARCHY ===== */
+    h1 {
+      font-size: 45px;
+      font-weight: 700;
+
+
+    }
+
+    body[data-theme="dark"] h1 {
+      color: var(--text-dark);
+    }
+
+    h2 {
+      font-size: 33px;
+      font-weight: 600;
+
+
+    }
+
+    body[data-theme="dark"] h2 {
+      color: var(--text-dark);
+    }
+
+    h3 {
+      font-size: 23px;
+      font-weight: 600;
+
+    }
+
+    body[data-theme="dark"] h3 {
+      color: var(--text-dark);
+    }
+
+    h4 {
+      font-size: 22px;
+      font-weight: 600;
+
+    }
+
+    body[data-theme="dark"] h4 {
+      color: var(--text-dark);
+    }
+
+    h5 {
+      font-size: 21px;
+      font-weight: 600;
+
+    }
+
+    body[data-theme="dark"] h5 {
+      color: var(--text-dark);
+    }
+
+    h6 {
+      font-size: 20px;
+      font-weight: 600;
+
+    }
+
+    body[data-theme="dark"] h6 {
+      color: var(--text-dark);
+    }
+
+    p,
+    span,
+    li,
+    .card-text,
+    .btn,
+    .hero-sub,
+    .feature-text,
+    .service-detail-text {
+      font-size: 18px;
+
+    }
+
+    body[data-theme="dark"] p,
+    body[data-theme="dark"] span,
+    body[data-theme="dark"] li {
+      color: var(--text-dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ===== BUTTONS - Green background, no hover/focus/active effects ===== */
+    .btn-primary-green {
+      background-color: var(--primary-green);
+      color: var(--pure-white);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: auto;
+      transition: none;
+    }
+
+    .btn-primary-green:hover,
+    .btn-primary-green:focus,
+    .btn-primary-green:active {
+      background-color: var(--primary-green) !important;
+      color: var(--pure-white) !important;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-outline-green {
+      background-color: transparent;
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      width: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: none;
+    }
+
+    .btn-outline-green:hover,
+    .btn-outline-green:focus,
+    .btn-outline-green:active {
+      background-color: transparent !important;
+      color: var(--primary-green) !important;
+      border-color: var(--primary-green) !important;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-yellow-accent {
+      background-color: var(--accent-yellow);
+
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: auto;
+      transition: none;
+    }
+
+    .btn-yellow-accent:hover,
+    .btn-yellow-accent:focus,
+    .btn-yellow-accent:active {
+      background-color: var(--accent-yellow) !important;
+      color: var(--pure-black) !important;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ===== SECTION SPACING: 35px vertical gaps, padding: 35px 50px 0 50px ===== */
+    .section-padding {
+      padding: 35px 50px 0 50px;
+    }
+
+    /* Hero Section */
+    .service-detail-hero {
+      border-radius: 0;
+    }
+
+    /* Service Features Cards */
+    .feature-card {
+      /* background: var(--pure-white); */
+      border-radius: 16px;
+      padding: 28px;
+      height: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(9, 76, 59, 0.1);
+    }
+
+    body[data-theme="dark"] .feature-card {
+      background: #1e1e1e;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-icon {
+      color: var(--primary-green);
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 12px;
+    }
+
+    /* Process Steps */
+    .step-card {
+      text-align: center;
+      padding: 24px;
+      background: var(--pure-white);
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    body[data-theme="dark"] .step-card {
+      background: #1e1e1e;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background-color: var(--accent-yellow);
+
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 auto 16px auto;
+    }
+
+    /* Pricing Card */
+    .pricing-card {
+      /* background: var(--pure-white); */
+      border-radius: 20px;
+      padding: 32px;
+      border: 2px solid rgba(9, 76, 59, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px rgba(9, 76, 59, 0.1);
+    }
+
+    body[data-theme="dark"] .pricing-card {
+      background: #1e1e1e;
+      border-color: rgba(255, 227, 83, 0.3);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    body[data-theme="dark"] .price {
+      color: var(--accent-yellow);
+    }
+
+    /* Testimonial */
+    .testimonial-card {
+      background: #FCF9F0;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    body[data-theme="dark"] .testimonial-card {
+      background: #2a2a2a;
+    }
+
+    .quote-icon {
+      color: var(--accent-yellow);
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    /* Sticky header offset */
+    body {
+      padding-top: 82px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 72px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .section-padding {
+        padding: 35px 20px 0 20px;
+      }
+
+      .btn-primary-green,
+      .btn-outline-green,
+      .btn-yellow-accent {
+        padding: 12px 24px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section-padding {
+        padding: 35px 16px 0 16px;
+      }
+    }
+
+    .img-fluid-real {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    .service-badge {
+      background-color: var(--accent-yellow);
+
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+
+      width: fit-content;
+    }
+
+    .check-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .check-list li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .check-list i {
+      color: var(--primary-green);
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+
+  <div id="site-header" class="fixed-top"></div>
+
+  <main>
+    <!-- Hero Section - Service Details -->
+    <div class="service-detail-hero section-gap section-padding">
+      <div class="container-fluid px-0">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <h1>Residential Sales & Acquisition</h1>
+            <p class="mb-4">Expert guidance for buying and selling residential properties. From luxury estates to
+              first-time homes, we deliver exceptional results through market expertise and personalized service.</p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="contactus.html" class="btn-primary-green"><i class="fas fa-calendar-alt me-2"></i> Schedule
+                Consultation</a>
+              <a href="register.html" class="btn-outline-green"><i class="fas fa-phone-alt me-2"></i> Call Agent</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800"
+              class="img-fluid-real shadow" alt="Luxury residential real estate">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Features Section -->
+    <div class="section-gap section-padding">
+      <div class="container-fluid px-0">
+        <div class="text-center mb-5">
+          <h2>Why Choose Our Service</h2>
+          <p style="font-size:18px; max-width: 700px; margin: 0 auto;">Exceptional service backed by industry-leading
+            expertise and proven results</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-card text-center">
+              <i class="fas fa-chart-line feature-icon"></i>
+              <h3>Data-Driven Pricing</h3>
+              <p>Advanced comparative market analysis ensures your property is priced perfectly for maximum return.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card text-center">
+              <i class="fas fa-camera feature-icon"></i>
+              <h3>Professional Marketing</h3>
+              <p>Professional photography, virtual tours, and targeted digital campaigns to reach qualified buyers.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card text-center">
+              <i class="fas fa-handshake feature-icon"></i>
+              <h3>Expert Negotiation</h3>
+              <p>Skilled negotiators securing the best terms and prices for both buyers and sellers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Overview Section -->
+    <div class="section-gap section-padding">
+      <div class="container-fluid px-0">
+        <div class="row g-5">
+          <div class="col-lg-7">
+            <h2>What We Offer</h2>
+            <p>Our residential sales service provides end-to-end support for buyers and sellers. We leverage deep market
+              knowledge, advanced analytics, and a vast network to ensure you get the best value.</p>
+            <ul class="check-list mt-4">
+              <li><i class="fas fa-check-circle"></i> Comprehensive market analysis & property valuation</li>
+              <li><i class="fas fa-check-circle"></i> Professional staging & photography services</li>
+              <li><i class="fas fa-check-circle"></i> Strategic marketing across 50+ platforms</li>
+              <li><i class="fas fa-check-circle"></i> Expert negotiation & contract management</li>
+              <li><i class="fas fa-check-circle"></i> Seamless closing coordination</li>
+            </ul>
+          </div>
+          <div class="col-lg-5">
+            <div class="pricing-card text-center">
+              <h3>Commission Structure</h3>
+              <div class="price mb-3">2.5% - 3%</div>
+              <p>Standard listing commission with full-service marketing package</p>
+              <hr>
+              <p><strong>Buyer's Agent Fee:</strong> Negotiable based on services</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Statistics Section -->
+    <div class="section-gap section-padding">
+      <div class="container-fluid px-0">
+        <div class="row g-4 text-center">
+          <div class="col-md-3">
+            <h2 style="color: var(--primary-green);">500+</h2>
+            <p>Homes Sold Annually</p>
+          </div>
+          <div class="col-md-3">
+            <h2 style="color: var(--primary-green);">98%</h2>
+            <p>List-to-Sale Ratio</p>
+          </div>
+          <div class="col-md-3">
+            <h2 style="color: var(--primary-green);">15 Days</h2>
+            <p>Average Time on Market</p>
+          </div>
+          <div class="col-md-3">
+            <h2 style="color: var(--primary-green);">4.9/5</h2>
+            <p>Client Satisfaction Rating</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- FAQ Section -->
+    <div class="section-gap section-padding">
+      <div class="container-fluid px-0">
+        <div class="text-center mb-5">
+          <h2>Frequently Asked Questions</h2>
+          <p style="font-size:18px;">Common questions about our residential sales service</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <h3>How long does it take to sell a home?</h3>
+            <p>Average time on market is 15 days with our premium marketing strategy. Timeline varies based on market
+              conditions and property type.</p>
+          </div>
+          <div class="col-md-6">
+            <h3>What are your commission rates?</h3>
+            <p>Standard listing commission ranges from 2.5% to 3%, inclusive of full marketing package, professional
+              photography, and negotiation services.</p>
+          </div>
+          <div class="col-md-6">
+            <h3>Do you assist with property staging?</h3>
+            <p>Yes, we offer professional staging consultations and can coordinate full staging services to maximize
+              your property's appeal.</p>
+          </div>
+          <div class="col-md-6">
+            <h3>How do you determine property value?</h3>
+            <p>We use advanced comparative market analysis, recent sales data, and property condition assessment to
+              provide accurate valuation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+  <div id="side-footer"></div>
+
+  <script src="footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="header.js"></script>
+
+  <script>
+    (function () {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href').substring(1);
+          if (targetId) {
+            const targetElem = document.getElementById(targetId);
+            if (targetElem) {
+              e.preventDefault();
+              const headerOffset = 90;
+              const elementPosition = targetElem.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
